@@ -1,0 +1,11 @@
+{
+  "domain": "rtm",
+  "name": "RTM",
+  "documentation": "https://github.com/gunzo-code/rtm-home-assistant",
+  "issue_tracker": "https://github.com/gunzo-code/rtm-home-assistant/issues",
+  "dependencies": [],
+  "version": "0.0.1",
+  "codeowners": ["gunzo-code"],
+  "requirements": ["requests==2.25.1"],
+  "iot_class": "cloud_polling"
+}
