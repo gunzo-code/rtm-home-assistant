@@ -7,6 +7,8 @@ class RTM:
     def __init__(self):
         """Init main class
         """
+        None
+        
     def get_station_details(self, nom_pt_reseau):
         content_type = 'application/json'
         epoch_time   = int(time.time())
@@ -22,8 +24,17 @@ class RTM:
 
         # get response
         response = session.get(url).json()
+        
+        if 'getStationDetailsResponse' not in response:
+            raise ValueError("Error: Empty response from the API")
+        if 'comLieu' not in response['getStationDetailsResponse']:
+            raise ValueError("Error: Invalid station requested to the API")
+            
         com_lieu = response['getStationDetailsResponse']['comLieu']
         
+        if 'passage' not in response['getStationDetailsResponse']:
+            return com_lieu, None, None, None, None 
+            
         for passage in response['getStationDetailsResponse']['passage']:
             if passage['heurePassageReel']:
                 nom_ligne_cial     = passage['nomLigneCial']

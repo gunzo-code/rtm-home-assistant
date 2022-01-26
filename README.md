@@ -1,6 +1,6 @@
 # RTM home assistant
 
-This module show the time for the next RTM bus inside home assistant.
+This module displays the time for the next RTM bus inside home assistant.
 
 
 ## Install
