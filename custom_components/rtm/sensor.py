@@ -12,7 +12,7 @@ from homeassistant.helpers.event import track_time_interval, call_later
 _LOGGER = logging.getLogger(__name__)
 
 # INTERVAL CONSTANTS
-DEFAULT_SCAN_INTERVAL = timedelta(minutes=1)
+DEFAULT_SCAN_INTERVAL = timedelta(minutes=5)
 FIRST_RUN_INTERVAL    = 5
 
 # LABEL CONSTANTS
@@ -57,11 +57,11 @@ class RTMStationDetail:
         call_later(hass, FIRST_RUN_INTERVAL, self.update_rtm_data)
 
         # Init sensors with empty value
-        self.sensors.append(RTMSensor(HA_RTM_NOM_ARRET_STR))
-        self.sensors.append(RTMSensor(HA_RTM_NUMERO_LIGNE_STR))
-        self.sensors.append(RTMSensor(HA_RTM_HEURE_PASSAGE_STR))
-        self.sensors.append(RTMSensor(HA_RTM_PASSAGE_REEL_STR))
-        self.sensors.append(RTMSensor(HA_RTM_TERMINUS_LIGNE_STR))
+        self.sensors.append(RTMSensor(HA_RTM_NOM_ARRET_STR,      'mdi:bus-stop-uncovered'))
+        self.sensors.append(RTMSensor(HA_RTM_NUMERO_LIGNE_STR,   'mdi:bus'))
+        self.sensors.append(RTMSensor(HA_RTM_HEURE_PASSAGE_STR,  'mdi:clock-outline'))
+        self.sensors.append(RTMSensor(HA_RTM_PASSAGE_REEL_STR,   'mdi:flag'))
+        self.sensors.append(RTMSensor(HA_RTM_TERMINUS_LIGNE_STR, 'mdi:bus-stop-uncovered'))
 
         # call api every DEFAULT_SCAN_INTERVAL
         track_time_interval(hass, self.update_rtm_data, DEFAULT_SCAN_INTERVAL)
@@ -78,15 +78,15 @@ class RTMStationDetail:
             # Update sensors value
             for sensor in self.sensors:
                 if sensor.name == HA_RTM_NOM_ARRET_STR:
-                    sensor.set_data(com_lieu, 'mdi:bus-stop-uncovered')
+                    sensor.set_data(com_lieu)
                 elif sensor.name == HA_RTM_NUMERO_LIGNE_STR:
-                    sensor.set_data(nom_ligne_cial, 'mdi:bus')
+                    sensor.set_data(nom_ligne_cial)
                 elif sensor.name == HA_RTM_HEURE_PASSAGE_STR:
-                    sensor.set_data(heure_passage_reel, 'mdi:clock-outline')
+                    sensor.set_data(heure_passage_reel)
                 elif sensor.name == HA_RTM_PASSAGE_REEL_STR:
-                    sensor.set_data(passage_reel, 'mdi:flag')
+                    sensor.set_data(passage_reel)
                 elif sensor.name == HA_RTM_TERMINUS_LIGNE_STR:
-                    sensor.set_data(destination, 'mdi:bus-stop-uncovered')
+                    sensor.set_data(destination)
 
                 sensor.async_schedule_update_ha_state(True)
 
