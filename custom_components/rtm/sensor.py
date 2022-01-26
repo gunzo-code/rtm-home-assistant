@@ -20,7 +20,7 @@ HA_RTM_NOM_ARRET_STR      = 'RTM Nom arrêt'
 HA_RTM_NUMERO_LIGNE_STR   = 'RTM Numéro ligne'
 HA_RTM_HEURE_PASSAGE_STR  = 'RTM Heure passage'
 HA_RTM_PASSAGE_REEL_STR   = 'RTM Passage réel'
-HA_RTM_TERMINUS_LIGNE_STR = 'Terminus ligne'
+HA_RTM_TERMINUS_LIGNE_STR = 'RTM Terminus ligne'
 CONF_RTM_STATION          = 'station_id'
 
 # Config for variables verification
